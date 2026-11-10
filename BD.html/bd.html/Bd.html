@@ -102,7 +102,7 @@ function rain(){for(let i=0;i<60;i++)setTimeout(()=>{const x=Math.random()*cv.wi
 function heart(c,s){c.beginPath();c.moveTo(0,s/3);c.bezierCurveTo(-s,-s/2,-s/2,-s,0,-s/3);c.bezierCurveTo(s/2,-s,s,-s/2,0,s/3);c.fill()}
 let amT=0;
 (function loop(){cx.clearRect(0,0,cv.width,cv.height);if(++amT%22==0&&P.filter(p=>p.amb).length<28)amb();
-P=P.filter(p=>p.y<cv.height+30&&p.life-->0);
+P = P.filter(p => p.y < cv.height + 30 && p.life-- > 0);
 for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.g)p.vy+=p.g;p.a+=.04;cx.save();cx.translate(p.x,p.y);cx.rotate(p.t=='bf'?0:p.a*(p.amb?.3:1));cx.globalAlpha=p.amb?.75:Math.min(1,p.life/30);
 if(p.t=='pt'){cx.fillStyle='#ffb7d0';cx.beginPath();cx.ellipse(0,0,p.s,p.s/2,0,0,6.28);cx.fill()}
 else if(p.t=='h'){cx.fillStyle=p.c||'#ff7eb0';heart(cx,p.s)}
